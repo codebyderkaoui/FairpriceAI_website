@@ -886,6 +886,146 @@
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: var(--dark); }
   ::-webkit-scrollbar-thumb { background: var(--green-mid); border-radius: 2px; }
+
+  /* ===== MOBILE ===== */
+  @media (max-width: 768px) {
+
+    /* Disable scroll-snap on mobile so content isn't clipped */
+    html { scroll-snap-type: none; }
+
+    section {
+      min-height: auto;
+      padding: 60px 24px 80px;
+      scroll-snap-align: none;
+      justify-content: flex-start;
+    }
+
+    /* Nav dots: move to bottom, horizontal */
+    .nav-dots {
+      right: unset;
+      top: unset;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      flex-direction: row;
+      gap: 8px;
+    }
+
+    .slide-num { right: 20px; bottom: 20px; font-size: 0.65rem; }
+
+    /* ---- SLIDE 1: HERO ---- */
+    .hero { gap: 20px; padding-top: 80px; }
+    .hero-tag { font-size: 0.65rem; letter-spacing: 0.15em; padding: 6px 14px; }
+    .hero h1 { font-size: clamp(72px, 22vw, 110px); }
+    .hero-sub { font-size: 1rem; }
+
+    /* ---- SLIDE 2: PROBLEM ---- */
+    .problem { gap: 28px; }
+    .problem::before { font-size: 55vw; bottom: 0; }
+    .problem-headline { font-size: clamp(40px, 11vw, 70px); }
+    .problem-cards {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    .pcard { padding: 24px 20px; }
+    .pcard .num { font-size: 50px; }
+    .pcard h3 { font-size: 1.1rem; }
+
+    /* ---- SLIDE 3: SOLUTION ---- */
+    .solution { gap: 28px; }
+    .solution-head { font-size: clamp(48px, 13vw, 80px); }
+    .solution-grid {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    .scard { padding: 24px 20px; }
+    .scard h3 { font-size: 1.5rem; }
+
+    /* ---- SLIDE 4: HOW IT WORKS ---- */
+    .how { gap: 28px; }
+    .how-title { font-size: clamp(40px, 11vw, 70px); }
+    .steps {
+      flex-direction: column;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .steps::before {
+      top: 0; bottom: 0;
+      left: 35px; right: unset;
+      width: 2px; height: auto;
+      background: linear-gradient(180deg, var(--green-light), var(--gold));
+    }
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      text-align: left;
+      padding: 0;
+      flex: none;
+      width: 100%;
+    }
+    .step-dot {
+      width: 52px; height: 52px;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+      margin: 0;
+    }
+    .step h4 { font-size: 1.1rem; margin-bottom: 0; }
+
+    /* ---- SLIDE 5: AI ---- */
+    .ai-slide { gap: 28px; }
+    .ai-title { font-size: clamp(40px, 11vw, 70px); }
+    .ai-grid {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    .ai-card { padding: 22px 18px; }
+
+    /* ---- SLIDE 6: BUSINESS MODEL ---- */
+    .bizmodel { gap: 28px; }
+    .biz-title { font-size: clamp(40px, 11vw, 70px); }
+    .biz-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .biz-card { padding: 28px 22px; }
+    .biz-card h3 { font-size: 1.8rem; }
+    .tier { padding: 12px 14px; flex-wrap: wrap; gap: 6px; }
+    .tier-price { font-size: 0.8rem; padding: 4px 10px; }
+
+    /* ---- SLIDE 7: IMPACT ---- */
+    .impact { gap: 28px; }
+    .impact-title { font-size: clamp(55px, 16vw, 100px); }
+    .impact-stats {
+      grid-template-columns: 1fr;
+      gap: 14px;
+      max-width: 100%;
+    }
+    .stat { padding: 24px 18px; }
+    .stat-num { font-size: 3.5rem; }
+    .wc-badge { font-size: 0.72rem; padding: 8px 16px; letter-spacing: 0.06em; }
+
+    /* ---- SLIDE 8: CLOSING ---- */
+    .closing { gap: 24px; padding-top: 80px; }
+    .closing h1 { font-size: clamp(60px, 18vw, 110px); }
+    .closing-sub { font-size: 1rem; }
+    .closing-tag { font-size: 0.7rem; letter-spacing: 0.15em; }
+
+    /* ---- SLIDE 9: TEAM ---- */
+    .team-slide { gap: 24px; padding-top: 60px; }
+    .team-hackathon-tag { font-size: 0.68rem; letter-spacing: 0.12em; padding: 6px 14px; }
+    .team-title { font-size: clamp(38px, 11vw, 64px); }
+    .team-cards {
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      max-width: 100%;
+    }
+    .member-card { padding: 20px 14px 18px; }
+    .member-avatar { width: 48px; height: 48px; font-size: 1.2rem; }
+    .member-name { font-size: 0.85rem; }
+    .team-links { gap: 10px; }
+    .team-link { font-size: 0.75rem; padding: 10px 14px; }
+  }
 </style>
 </head>
 <body>
