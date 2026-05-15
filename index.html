@@ -1297,28 +1297,46 @@
 <script>
   const sections = document.querySelectorAll('section');
   const dots = document.querySelectorAll('.dot');
+  let currentIdx = 0;
 
   function goTo(i) {
+    i = Math.max(0, Math.min(i, sections.length - 1));
+    currentIdx = i;
     sections[i].scrollIntoView({ behavior: 'smooth' });
+    dots.forEach(d => d.classList.remove('active'));
+    if (dots[i]) dots[i].classList.add('active');
   }
 
+  // Use a low threshold (10%) so even tall slides register correctly
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const idx = Array.from(sections).indexOf(entry.target);
+        currentIdx = idx;
         dots.forEach(d => d.classList.remove('active'));
         if (dots[idx]) dots[idx].classList.add('active');
       }
     });
-  }, { threshold: 0.5 });
+  }, { threshold: 0.1, rootMargin: '-20% 0px -20% 0px' });
 
   sections.forEach(s => observer.observe(s));
 
-  // Keyboard navigation
+  // Keyboard navigation — debounced so rapid keypresses don't stack up
+  let scrolling = false;
   document.addEventListener('keydown', (e) => {
-    const active = Array.from(dots).findIndex(d => d.classList.contains('active'));
-    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') goTo(Math.min(active + 1, sections.length - 1));
-    if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') goTo(Math.max(active - 1, 0));
+    if (scrolling) return;
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+      e.preventDefault();
+      goTo(currentIdx + 1);
+      scrolling = true;
+      setTimeout(() => { scrolling = false; }, 700);
+    }
+    if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+      e.preventDefault();
+      goTo(currentIdx - 1);
+      scrolling = true;
+      setTimeout(() => { scrolling = false; }, 700);
+    }
   });
 </script>
 </body>
